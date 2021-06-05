@@ -39,6 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapi.apps.MyapiConfig',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+
 ]
 
 MIDDLEWARE = [
@@ -52,6 +59,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'bookstore4.urls'
+
+SITE_ID=1
 
 TEMPLATES = [
     {
@@ -129,3 +138,15 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+ 'DEFAULT_AUTHENTICATION_CLASSES':(
+     'rest_framework.authentication.BasicAuthentication',
+     'rest_framework.authentication.SessionAuthentication',
+     'rest_framework.authentication.TokenAuthentication',
+ ),
+ 'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
